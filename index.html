@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hazrat Ali | AI & Automation Engineer</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --g1: #ff6b35;
+      --g2: #f7c948;
+      --g3: #4ecdc4;
+      --g4: #45b7d1;
+      --g5: #a855f7;
+      --dark: #07070f;
+      --card: #0f0f1a;
+      --card2: #141424;
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #e8e8f2;
+      --muted: #7878a0;
+      --grad: linear-gradient(135deg, #ff6b35, #f7c948, #4ecdc4);
+      --grad2: linear-gradient(135deg, #a855f7, #4ecdc4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden
+    }
+
+    /* ANIMATED BG */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .bg-mesh::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 85, 247, .12), transparent 70%);
+      top: -200px;
+      right: -200px;
+      animation: drift1 12s ease-in-out infinite
+    }
+
+    .bg-mesh::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78, 205, 196, .1), transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      animation: drift2 15s ease-in-out infinite
+    }
+
+    @keyframes drift1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      50% {
+        transform: translate(-60px, 40px) scale(1.1)
+      }
+    }
+
+    @keyframes drift2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      50% {
+        transform: translate(40px, -50px) scale(1.15)
+      }
+    }
+
+    .orb3 {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 53, .08), transparent 70%);
+      top: 50%;
+      left: 30%;
+      animation: drift3 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0
+    }
+
+    @keyframes drift3 {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%)
+      }
+
+      50% {
+        transform: translate(-60%, -40%)
+      }
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 72px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(7, 7, 15, .85);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: .3s
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: .2s;
+      position: relative;
+      padding-bottom: 2px
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--grad);
+      transition: .3s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text)
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .nav-cta {
+      background: var(--grad);
+      color: #000;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      white-space: nowrap
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(7, 7, 15, .98);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 6%;
+      z-index: 199
+    }
+
+    .mobile-menu.open {
+      display: block
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px
+    }
+
+    .mobile-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 6%
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 14px;
+      font-family: 'Syne', sans-serif
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 4.5vw, 50px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 14px
+    }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      max-width: 520px
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 60px
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: 80px;
+      overflow: hidden
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+      width: 100%
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px
+    }
+
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      background: #4ecdc4;
+      border-radius: 50%;
+      animation: blink 2s infinite
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 22px
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 540px;
+      font-weight: 300
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px
+    }
+
+    .btn-primary {
+      background: var(--grad);
+      color: #000;
+      padding: 13px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      transition: .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 107, 53, .25)
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 13px 30px;
+      border-radius: 50px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .2s;
+      background: rgba(255, 255, 255, .03)
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, .25);
+      background: rgba(255, 255, 255, .07)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+      margin-right: 60px
+    }
+
+    .hero-photo {
+      width: 280px;
+      height: 340px;
+      border-radius: 28px;
+      object-fit: cover;
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border)
+    }
+
+    .hero-photo-frame {
+      position: absolute;
+      inset: -10px;
+      border-radius: 34px;
+      border: 1px solid rgba(78, 205, 196, .2);
+      pointer-events: none
+    }
+
+    .hero-photo-badge {
+      position: absolute;
+      bottom: -16px;
+      left: -16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      backdrop-filter: blur(10px)
+    }
+
+    .hero-photo-badge h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .hero-photo-badge p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .hero-social {
+      position: absolute;
+      top: 0;
+      right: -44px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .social-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 16px;
+      transition: .2s
+    }
+
+    .social-icon:hover {
+      border-color: var(--g3);
+      transform: scale(1.1)
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
+      margin-top: 56px
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 18px
+    }
+
+    .about-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px
+    }
+
+    .info-card span {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .info-card p {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 4px
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      color: var(--text);
+      transition: .2s
+    }
+
+    .tag:hover {
+      border-color: var(--g3);
+      color: var(--g3)
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .pub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      transition: .3s
+    }
+
+    .pub-card:hover {
+      border-color: rgba(168, 85, 247, .3);
+      transform: translateX(4px)
+    }
+
+    .pub-status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 10px
+    }
+
+    .pub-accepted {
+      background: rgba(78, 205, 196, .15);
+      color: var(--g3)
+    }
+
+    .pub-review {
+      background: rgba(247, 201, 72, .15);
+      color: var(--g2)
+    }
+
+    .pub-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 6px
+    }
+
+    .pub-card p {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 56px
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      transition: .3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .skill-card:hover {
+      border-color: rgba(78, 205, 196, .25);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .3)
+    }
+
+    .skill-icon {
+      font-size: 28px;
+      margin-bottom: 14px
+    }
+
+    .skill-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, .05);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .exp-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      cursor: pointer;
+      transition: .3s;
+      position: relative
+    }
+
+    .exp-card:hover {
+      border-color: rgba(78, 205, 196, .2)
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .exp-left h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--g3);
+      font-weight: 600
+    }
+
+    .exp-period {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 4px
+    }
+
+    .exp-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .05);
+      border: none;
+      color: var(--muted);
+      font-size: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .exp-card.open .exp-toggle {
+      transform: rotate(180deg);
+      background: rgba(78, 205, 196, .1);
+      color: var(--g3)
+    }
+
+    .exp-body {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border)
+    }
+
+    .exp-card.open .exp-body {
+      display: block
+    }
+
+    .exp-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .exp-body li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative
+    }
+
+    .exp-body li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--g3);
+      font-size: 12px
+    }
+
+    /* ── PROJECTS ── */
+    .proj-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 40px 0 32px
+    }
+
+    .filt {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500
+    }
+
+    .filt.active,
+    .filt:hover {
+      background: var(--grad);
+      color: #000;
+      border-color: transparent;
+      font-weight: 700
+    }
+
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px
+    }
+
+    .proj-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .3s
+    }
+
+    .proj-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(78, 205, 196, .25);
+      box-shadow: 0 18px 56px rgba(0, 0, 0, .4)
+    }
+
+    .proj-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .proj-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0
+    }
+
+    .proj-thumb-emoji {
+      position: relative;
+      z-index: 1
+    }
+
+    .proj-cat-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, .7);
+      backdrop-filter: blur(8px);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 10px;
+      color: var(--g3);
+      font-weight: 600;
+      z-index: 1
+    }
+
+    .proj-body {
+      padding: 20px
+    }
+
+    .proj-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.35
+    }
+
+    .proj-client {
+      font-size: 11px;
+      color: var(--g3);
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+
+    .proj-body p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 14px
+    }
+
+    .proj-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px
+    }
+
+    .proj-pills span {
+      background: rgba(255, 255, 255, .04);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 10px;
+      color: var(--muted)
+    }
+
+    .proj-links {
+      display: flex;
+      gap: 12px
+    }
+
+    .proj-links a {
+      font-size: 11px;
+      color: var(--g3);
+      text-decoration: none;
+      font-weight: 600;
+      transition: .2s
+    }
+
+    .proj-links a:hover {
+      color: var(--g2)
+    }
+
+    /* ── BLOG ── */
+    #blog {
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      margin-top: 56px
+    }
+
+    .blog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .3s;
+      cursor: pointer
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(247, 201, 72, .25)
+    }
+
+    .blog-thumb {
+      height: 190px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      background: linear-gradient(135deg, rgba(255, 107, 53, .12), rgba(247, 201, 72, .12))
+    }
+
+    .blog-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .blog-body {
+      padding: 22px
+    }
+
+    .blog-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px
+    }
+
+    .blog-cat-badge {
+      background: var(--grad);
+      color: #000;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 700
+    }
+
+    .blog-date {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .blog-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4
+    }
+
+    .blog-body p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 14px
+    }
+
+    .blog-read {
+      font-size: 12px;
+      color: var(--g3);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: .2s
+    }
+
+    .blog-read:hover {
+      gap: 9px
+    }
+
+    .blog-empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 80px 0;
+      color: var(--muted)
+    }
+
+    .blog-empty-icon {
+      font-size: 52px;
+      margin-bottom: 16px
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      margin-top: 56px;
+      align-items: start
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px
+    }
+
+    .clink {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: .3s
+    }
+
+    .clink:hover {
+      border-color: rgba(78, 205, 196, .35);
+      transform: translateX(4px)
+    }
+
+    .clink-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0
+    }
+
+    .clink strong {
+      display: block;
+      font-size: 13px
+    }
+
+    .clink span {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .contact-form-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px
+    }
+
+    .contact-form-wrap h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 22px
+    }
+
+    .fg {
+      margin-bottom: 16px
+    }
+
+    .fg label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 7px;
+      font-weight: 500
+    }
+
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 11px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: .2s
+    }
+
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: var(--g3)
+    }
+
+    .fg textarea {
+      height: 110px;
+      resize: vertical
+    }
+
+    .fg select option {
+      background: var(--card);
+      color: var(--text)
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--grad);
+      color: #000;
+      border: none;
+      padding: 13px;
+      border-radius: 50px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s;
+      margin-top: 4px
+    }
+
+    .submit-btn:hover {
+      opacity: .85;
+      transform: translateY(-1px)
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 32px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: relative;
+      z-index: 1
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: .2s
+    }
+
+    .footer-links a:hover {
+      color: var(--text)
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    /* ── MODAL (blog post) ── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0, 0, 0, .85);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal-backdrop.open {
+      display: flex
+    }
+
+    .modal-box {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto
+    }
+
+    .modal-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.35
+    }
+
+    .modal-close {
+      float: right;
+      background: rgba(255, 255, 255, .08);
+      border: none;
+      color: var(--muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      margin: -4px -4px 0 0;
+      transition: .2s
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, .15);
+      color: var(--text)
+    }
+
+    .modal-img {
+      width: 100%;
+      border-radius: 14px;
+      margin: 16px 0;
+      display: none
+    }
+
+    .modal-content {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8
+    }
+
+    /* ── ADMIN ── */
+    .admin-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 400;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--grad);
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(255, 107, 53, .3);
+      transition: .2s
+    }
+
+    .admin-fab:hover {
+      transform: scale(1.1)
+    }
+
+    .admin-panel {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: rgba(7, 7, 15, .97);
+      backdrop-filter: blur(20px);
+      overflow-y: auto;
+      padding: 36px 5%
+    }
+
+    .admin-panel.open {
+      display: block
+    }
+
+    .admin-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px
+    }
+
+    .admin-top h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .admin-x {
+      background: rgba(255, 255, 255, .08);
+      border: none;
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .admin-x:hover {
+      background: rgba(255, 255, 255, .15)
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap
+    }
+
+    .atab {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 9px 22px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: .2s
+    }
+
+    .atab.active {
+      background: var(--grad);
+      color: #000;
+      font-weight: 700;
+      border-color: transparent
+    }
+
+    .admin-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px
+    }
+
+    .admin-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 20px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s;
+      margin-bottom: 10px
+    }
+
+    .upload-zone:hover {
+      border-color: var(--g3)
+    }
+
+    .upload-zone p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px
+    }
+
+    .upload-zone .uz-icon {
+      font-size: 28px
+    }
+
+    .img-prev {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none
+    }
+
+    .admin-list {
+      margin-top: 22px
+    }
+
+    .admin-list h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--muted)
+    }
+
+    .alist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px
+    }
+
+    .alist-item-info h5 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 3px
+    }
+
+    .alist-item-info p {
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .alist-actions {
+      display: flex;
+      gap: 8px
+    }
+
+    .btn-del {
+      background: rgba(255, 107, 53, .15);
+      color: var(--g1);
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .btn-del:hover {
+      background: rgba(255, 107, 53, .3)
+    }
+
+    #admin-login-wrap {
+      max-width: 380px;
+      margin: 60px auto 0
+    }
+
+    /* FADE ANIMATIONS */
+    .fade {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .nav-links {
+        display: none
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr
+      }
+
+      .hero-photo-wrap {
+        display: none
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .hero-stats {
+        gap: 20px
+      }
+    }
+
+    @media(max-width:600px) {
+      section {
+        padding: 80px 5%
+      }
+
+      nav {
+        padding: 0 5%
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-mesh"></div>
+  <div class="orb3"></div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#home" class="nav-logo">Hazrat Ali</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="assets/Hazrat_Ali_CV.pdf" download class="nav-cta">Download CV</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#home" onclick="closeMenu()">Home</a></li>
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+      <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+      <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+      <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section id="home">
+    <div class="hero-inner">
+      <div class="hero-left fade">
+        <div class="hero-badge">
+          <div class="hero-dot"></div> Available for freelance projects
+        </div>
+        <h1>AI & <span class="grad-text">Automation</span><br>Engineer</h1>
+        <p class="hero-desc">Building intelligent workflows that run 24/7 — from LLM-powered agents and RAG systems to
+          n8n automations that transform how businesses operate.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">View My Work →</a>
+          <a href="#contact" class="btn-secondary">Let's Talk</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Live Projects</div>
+          </div>
+          <div>
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years Exp.</div>
+          </div>
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Publications</div>
+          </div>
+          <div>
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Clients</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-photo-wrap fade">
+        <img src="assets/profile.png" alt="Hazrat Ali" class="hero-photo">
+        <div class="hero-photo-frame"></div>
+        <div class="hero-photo-badge">
+          <h4>AI & Automation Officer</h4>
+          <p>Delco IT · Dhaka, Bangladesh</p>
+        </div>
+        <div class="hero-social">
+          <a href="https://github.com/hazratali1" target="_blank" class="social-icon" title="GitHub">🐙</a>
+          <a href="https://www.linkedin.com/in/hazrat-ali-788257350/" target="_blank" class="social-icon"
+            title="LinkedIn">💼</a>
+          <a href="https://www.facebook.com/hm.hmhazrat.1" target="_blank" class="social-icon" title="Facebook">📘</a>
+          <a href="https://api.whatsapp.com/send/?phone=8801883860803" target="_blank" class="social-icon"
+            title="WhatsApp">💬</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <span class="section-tag">About Me</span>
+    <h2 class="section-title fade">Applied AI Engineer &<br><span class="grad-text">n8n Automation Specialist</span>
+    </h2>
+    <div class="about-grid fade">
+      <div class="about-text">
+        <p>Applied AI and Machine Learning Engineer with hands-on experience in Machine Learning, Deep Learning, and
+          Large Language Model (LLM)-based systems. I design end-to-end ML and AI pipelines including data
+          preprocessing, feature engineering, model training, deployment, and MLOps-driven workflow automation.</p>
+        <p>Experienced in building production-ready solutions such as RAG systems, LLM-powered customer support
+          automation, AI-driven document QA, and AI workflow automation using n8n for real business clients across
+          multiple industries.</p>
+        <div class="about-info">
+          <div class="info-card"><span>Location</span>
+            <p>📍 Mirpur 11, Dhaka</p>
+          </div>
+          <div class="info-card"><span>Education</span>
+            <p>🎓 B.Sc. CSE — Green University</p>
+          </div>
+          <div class="info-card"><span>Email</span>
+            <p>📧 hazrat.ai.automation@gmail.com</p>
+          </div>
+          <div class="info-card"><span>Phone</span>
+            <p>📞 +880-1883-860-803</p>
+          </div>
+        </div>
+        <div class="about-tags">
+          <span class="tag">LLM & RAG</span><span class="tag">n8n Automation</span><span class="tag">AI Agents</span>
+          <span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">FastAPI</span>
+          <span class="tag">WhatsApp Bots</span><span class="tag">Social Media AI</span><span
+            class="tag">Gemini</span><span class="tag">GPT-4o</span>
+        </div>
+      </div>
+      <div class="about-right">
+        <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px;color:var(--muted)">📚
+          PUBLICATIONS</h3>
+        <div class="pub-card"><span class="pub-status pub-accepted">✓ IEEE STI 2025</span>
+          <h4>Deep Learning-Based Early Prediction of Depression & Suicidal Risk in Bangla Social Media Posts</h4>
+          <p>Transformer-based framework on custom Bangla dataset</p>
+        </div>
+        <div class="pub-card"><span class="pub-status pub-accepted">✓ IEEE QPAIN 2026</span>
+          <h4>LLM-Based Interpretation of Human Natural Language Feedback for Reinforcement Learning</h4>
+          <p>Improving RLHF pipeline alignment stability</p>
+        </div>
+        <div class="pub-card"><span class="pub-status pub-accepted">✓ IEEE QPAIN 2026</span>
+          <h4>LLM-Driven Reinforcement Learning for Intelligent Employee Performance Optimization</h4>
+          <p>Adaptive goal setting in organizational environments</p>
+        </div>
+        <div class="pub-card"><span class="pub-status pub-review">⏳ Under Review</span>
+          <h4>Transformer-Based Hybrid Framework for Depression and Suicidal Risk Detection</h4>
+          <p>Multi-transformer ensemble with improved accuracy</p>
+        </div>
+        <div class="pub-card"><span class="pub-status pub-review">⏳ Under Review</span>
+          <h4>Retrieval-Grounded Novelty-Aware Framework for Research Idea Generation with LLMs</h4>
+          <p>RAG-based system reducing hallucination in research ideation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <span class="section-tag">Expertise</span>
+    <h2 class="section-title fade">Skills & <span class="grad-text">Technologies</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card fade">
+        <div class="skill-icon">🤖</div>
+        <h3>AI & Machine Learning</h3>
+        <div class="skill-pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span
+            class="pill">Scikit-learn</span><span class="pill">LangChain</span><span
+            class="pill">HuggingFace</span><span class="pill">BERT</span><span class="pill">Transformers</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">⚡</div>
+        <h3>Automation & Workflows</h3>
+        <div class="skill-pills"><span class="pill">n8n</span><span class="pill">Make.com</span><span
+            class="pill">Zapier</span><span class="pill">Webhook</span><span class="pill">Google Sheets API</span><span
+            class="pill">Apify</span><span class="pill">Shotstack</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">💬</div>
+        <h3>LLM & GenAI</h3>
+        <div class="skill-pills"><span class="pill">GPT-4o</span><span class="pill">Gemini</span><span
+            class="pill">Claude</span><span class="pill">Veo 3</span><span class="pill">RAG</span><span
+            class="pill">Pinecone</span><span class="pill">Prompt Engineering</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">📱</div>
+        <h3>Integrations & APIs</h3>
+        <div class="skill-pills"><span class="pill">WhatsApp API</span><span class="pill">Telegram</span><span
+            class="pill">Facebook API</span><span class="pill">Instagram API</span><span class="pill">Gmail
+            API</span><span class="pill">Supabase</span><span class="pill">Cloudinary</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">🚀</div>
+        <h3>Deployment & Backend</h3>
+        <div class="skill-pills"><span class="pill">FastAPI</span><span class="pill">Docker</span><span
+            class="pill">Vercel</span><span class="pill">GitHub Pages</span><span class="pill">HuggingFace
+            Spaces</span><span class="pill">REST API</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">🧠</div>
+        <h3>Deep Learning</h3>
+        <div class="skill-pills"><span class="pill">ANN</span><span class="pill">CNN</span><span
+            class="pill">RNN</span><span class="pill">LSTM</span><span class="pill">GRU</span><span
+            class="pill">Attention Mechanism</span><span class="pill">YOLO</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">📊</div>
+        <h3>Data & Analytics</h3>
+        <div class="skill-pills"><span class="pill">Python</span><span class="pill">Pandas</span><span
+            class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">SQL</span><span
+            class="pill">Google Colab</span></div>
+      </div>
+      <div class="skill-card fade">
+        <div class="skill-icon">💻</div>
+        <h3>Programming</h3>
+        <div class="skill-pills"><span class="pill">Python</span><span class="pill">JavaScript</span><span
+            class="pill">SQL</span><span class="pill">C</span><span class="pill">C++</span><span
+            class="pill">HTML/CSS</span><span class="pill">PHP</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <span class="section-tag">Career</span>
+    <h2 class="section-title fade">Work <span class="grad-text">Experience</span></h2>
+    <div class="exp-list fade">
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-header">
+          <div class="exp-left">
+            <h3>AI Developer</h3>
+            <div class="exp-company">Softvence Agency • On-site</div>
+          </div>
+          <div>
+            <div class="exp-period">2026 – Present</div><button class="exp-toggle">▾</button>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Building AI-powered web platforms and intelligent automation solutions for business clients</li>
+            <li>Integrating LLMs into client-facing platforms for smart interaction and content generation</li>
+            <li>Developed prompt engineering strategies for domain-specific AI behavior tuning</li>
+            <li>Built RAG-based chatbots and customer support systems on production infrastructure</li>
+            <li>Designed AI automation solutions using n8n, Zapier, and Make for scalable business workflows</li>
+            <li>Integrated GoHighLevel, Crisp, Slack, and Airtable into automated AI-driven client systems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-header">
+          <div class="exp-left">
+            <h3>AI & Automation Officer</h3>
+            <div class="exp-company">Delco IT</div>
+          </div>
+          <div>
+            <div class="exp-period">Present</div><button class="exp-toggle">▾</button>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Leading AI and automation initiatives for the company and its clients</li>
+            <li>Building n8n-powered content automation workflows with Gemini and Veo 3</li>
+            <li>Designing social media automation and branded content generation pipelines</li>
+            <li>Email-triggered content system with Cloudinary logo overlay and approval flow</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-header">
+          <div class="exp-left">
+            <h3>AI / ML Engineer</h3>
+            <div class="exp-company">9AM Solutions • On-site</div>
+          </div>
+          <div>
+            <div class="exp-period">2025 – 2026</div><button class="exp-toggle">▾</button>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Built LLM-powered AI agents for customer support and order processing using RAG</li>
+            <li>Developed and deployed predictive ML models for business forecasting</li>
+            <li>Reduced customer service workload by ~60% through intelligent automation</li>
+            <li>Built AI automation workflows using n8n, Zapier, and Make</li>
+            <li>Integrated automation tools including GoHighLevel, Crisp, Slack, and Airtable</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-card" onclick="toggleExp(this)">
+        <div class="exp-header">
+          <div class="exp-left">
+            <h3>Research Assistant — ML & NLP</h3>
+            <div class="exp-company">CRITS, Green University of Bangladesh</div>
+          </div>
+          <div>
+            <div class="exp-period">2024 – Present</div><button class="exp-toggle">▾</button>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Conducted exploratory data analysis on large-scale social media datasets</li>
+            <li>Designed and implemented end-to-end deep learning and transformer-based pipelines</li>
+            <li>Co-authored multiple peer-reviewed IEEE conference and journal papers</li>
+            <li>Worked on depression detection, suicide risk prediction, and RAG-based research generation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <span class="section-tag">Portfolio</span>
+    <h2 class="section-title fade">Featured <span class="grad-text">Projects</span></h2>
+    <p class="section-desc fade">Real, production-grade systems built for actual clients — not demos.</p>
+    <div class="proj-filter fade">
+      <button class="filt active" data-f="all">All (40)</button>
+      <button class="filt" data-f="automation">⚡ Automation</button>
+      <button class="filt" data-f="ai">🤖 AI / LLM</button>
+      <button class="filt" data-f="social">📱 Social Media</button>
+      <button class="filt" data-f="whatsapp">💬 WhatsApp</button>
+      <button class="filt" data-f="other">🎓 Other</button>
+    </div>
+    <div class="proj-grid" id="proj-grid"></div>
+  </section>
+
+  <!-- ── BLOG ── -->
+  <section id="blog">
+    <span class="section-tag">Insights</span>
+    <h2 class="section-title fade">Blog & <span class="grad-text">Articles</span></h2>
+    <p class="section-desc fade">Automation tutorials, AI workflow breakdowns, and project deep-dives.</p>
+    <div class="blog-grid" id="blog-grid"></div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title fade">Let's <span class="grad-text">Work Together</span></h2>
+    <div class="contact-grid fade">
+      <div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:14px">Ready to
+          automate<br>your business?</h3>
+        <p style="color:var(--muted);line-height:1.75;font-size:15px">Tell me your problem — I'll build a workflow that
+          solves it 24/7. Available for freelance projects, consulting, and full-time opportunities.</p>
+        <div class="contact-links">
+          <a href="mailto:hazrat.ai.automation@gmail.com" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#ff6b35,#f7c948)">📧</div>
+            <div><strong>hazrat.ai.automation@gmail.com</strong><span>Email me anytime</span></div>
+          </a>
+          <a href="https://api.whatsapp.com/send/?phone=8801883860803" target="_blank" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#25d366,#128c7e)">💬</div>
+            <div><strong>+880 1883-860803</strong><span>WhatsApp</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/hazrat-ali-788257350/" target="_blank" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#0077b5,#00a0dc)">💼</div>
+            <div><strong>LinkedIn Profile</strong><span>Connect professionally</span></div>
+          </a>
+          <a href="https://github.com/hazratali1" target="_blank" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#333,#555)">🐙</div>
+            <div><strong>GitHub</strong><span>See my code & projects</span></div>
+          </a>
+          <a href="https://www.facebook.com/hm.hmhazrat.1" target="_blank" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#1877f2,#42b0ff)">📘</div>
+            <div><strong>Facebook</strong><span>Follow me</span></div>
+          </a>
+          <a href="https://hazratali1.github.io/Hazrat-Ali/" target="_blank" class="clink">
+            <div class="clink-icon" style="background:linear-gradient(135deg,#ff6b35,#f7c948)">🌐</div>
+            <div><strong>Portfolio Website</strong><span>hazratali1.github.io</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <h3>Send a Message</h3>
+        <form id="contact-form" onsubmit="sendMsg(event)">
+          <div class="fg"><label>Your Name</label><input type="text" id="cf-name" placeholder="John Doe" required></div>
+          <div class="fg"><label>Email</label><input type="email" id="cf-email" placeholder="john@example.com" required>
+          </div>
+          <div class="fg"><label>Service</label>
+            <select id="cf-service">
+              <option>n8n Workflow Automation</option>
+              <option>AI Agent Development</option>
+              <option>WhatsApp Bot</option>
+              <option>Social Media Automation</option>
+              <option>Lead Generation</option>
+              <option>Research Collaboration</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Message</label><textarea id="cf-message" placeholder="Tell me about your project..."
+              required></textarea></div>
+          <button type="submit" class="submit-btn" id="cf-btn">Send Message 🚀</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Hazrat Ali</div>
+    <div class="footer-links">
+      <a href="https://github.com/hazratali1" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/hazrat-ali-788257350/" target="_blank">LinkedIn</a>
+      <a href="https://www.facebook.com/hm.hmhazrat.1" target="_blank">Facebook</a>
+      <a href="assets/Hazrat_Ali_CV.pdf" target="_blank">Download CV</a>
+    </div>
+    <p>© 2026 Hazrat Ali. All rights reserved.</p>
+  </footer>
+
+  <!-- ADMIN FAB -->
+  <button class="admin-fab" onclick="toggleAdmin()" title="Admin Panel">⚙️</button>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-top">
+      <h2>⚙️ Admin Panel</h2>
+      <button class="admin-x" onclick="toggleAdmin()">✕</button>
+    </div>
+    <!-- LOGIN -->
+    <div id="admin-login-wrap">
+      <div class="admin-card">
+        <h3>🔐 Login</h3>
+        <div class="fg"><label>Password</label><input type="password" id="ap" placeholder="Enter admin password"
+            onkeydown="if(event.key==='Enter')adminLogin()"></div>
+        <button class="submit-btn" onclick="adminLogin()">Login</button>
+        <p style="color:var(--muted);font-size:11px;margin-top:10px;text-align:center">Default password: admin123</p>
+      </div>
+    </div>
+    <!-- DASHBOARD -->
+    <div id="admin-dash" style="display:none">
+      <div class="admin-tabs">
+        <button class="atab active" onclick="aTab('proj',this)">📁 Projects</button>
+        <button class="atab" onclick="aTab('blog',this)">📝 Blog</button>
+        <button class="atab" onclick="aTab('set',this)">⚙️ Settings</button>
+      </div>
+      <!-- PROJECTS -->
+      <div id="at-proj" class="admin-card">
+        <h3>Add New Project</h3>
+        <div class="form-row">
+          <div class="fg"><label>Title</label><input type="text" id="pt" placeholder="Project title"></div>
+          <div class="fg"><label>Category</label><select id="pc">
+              <option value="automation">Automation</option>
+              <option value="ai">AI / LLM</option>
+              <option value="social">Social Media</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="other">Other</option>
+            </select></div>
+        </div>
+        <div class="fg"><label>Description</label><textarea id="pd" placeholder="Project description..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Client</label><input type="text" id="pcl" placeholder="Client name"></div>
+          <div class="fg"><label>Tech Stack (comma separated)</label><input type="text" id="ptg"
+              placeholder="n8n, Gemini, Drive"></div>
+        </div>
+        <div class="fg">
+          <label>Project Image</label>
+          <div class="upload-zone" onclick="document.getElementById('pif').click()">
+            <div class="uz-icon">🖼️</div>
+            <p>Click to upload image from device</p>
+            <p style="font-size:11px;margin-top:4px">Or paste Cloudinary / any image URL below</p>
+            <input type="file" id="pif" accept="image/*" style="display:none" onchange="prevImg(this,'pip','piu')">
+            <img id="pip" class="img-prev">
+          </div>
+          <input type="text" id="piu" class="fg" placeholder="https://res.cloudinary.com/..."
+            oninput="urlPrev(this,'pip')" style="margin-top:8px">
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>GitHub URL</label><input type="text" id="pgh" placeholder="https://github.com/...">
+          </div>
+          <div class="fg"><label>Live Demo URL</label><input type="text" id="pdm" placeholder="https://..."></div>
+        </div>
+        <button class="submit-btn" onclick="addProj()" style="margin-top:8px">Add Project ✅</button>
+        <div class="admin-list">
+          <h4 id="proj-count-label">Projects</h4>
+          <div id="al-proj"></div>
+        </div>
+      </div>
+      <!-- BLOG -->
+      <div id="at-blog" class="admin-card" style="display:none">
+        <h3>Add New Blog Post</h3>
+        <div class="form-row">
+          <div class="fg"><label>Title</label><input type="text" id="bt" placeholder="Post title"></div>
+          <div class="fg"><label>Category</label><select id="bc">
+              <option>n8n Tutorial</option>
+              <option>AI Workflow</option>
+              <option>WhatsApp Bot</option>
+              <option>Lead Generation</option>
+              <option>Case Study</option>
+              <option>Tips & Tricks</option>
+              <option>Research</option>
+            </select></div>
+        </div>
+        <div class="fg"><label>Summary (shown on card)</label><textarea id="bs"
+            placeholder="Brief summary..."></textarea></div>
+        <div class="fg"><label>Full Content</label><textarea id="bco" style="height:180px"
+            placeholder="Full blog post content (HTML or plain text)..."></textarea></div>
+        <div class="fg">
+          <label>Cover Image</label>
+          <div class="upload-zone" onclick="document.getElementById('bif').click()">
+            <div class="uz-icon">📸</div>
+            <p>Click to upload cover image</p>
+            <p style="font-size:11px;margin-top:4px">Or paste Cloudinary / any image URL below</p>
+            <input type="file" id="bif" accept="image/*" style="display:none" onchange="prevImg(this,'bip','biu')">
+            <img id="bip" class="img-prev">
+          </div>
+          <input type="text" id="biu" placeholder="https://res.cloudinary.com/..." oninput="urlPrev(this,'bip')"
+            style="margin-top:8px;width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;outline:none">
+        </div>
+        <div class="fg"><label>Tags (comma separated)</label><input type="text" id="btg"
+            placeholder="n8n, automation, ai"></div>
+        <div style="display:flex;gap:12px;margin-top:8px">
+          <button class="submit-btn" onclick="addBlog(false)" style="flex:1">Publish 🚀</button>
+          <button class="submit-btn" onclick="addBlog(true)"
+            style="flex:1;background:rgba(255,255,255,.08);color:var(--text)">Save Draft 💾</button>
+        </div>
+        <div class="admin-list">
+          <h4 id="blog-count-label">Blog Posts</h4>
+          <div id="al-blog"></div>
+        </div>
+      </div>
+      <!-- SETTINGS -->
+      <div id="at-set" class="admin-card" style="display:none">
+        <h3>Settings</h3>
+        <div class="fg"><label>Cloudinary Cloud Name</label><input type="text" id="cln" placeholder="your-cloud-name">
+        </div>
+        <div class="fg"><label>Cloudinary Upload Preset (unsigned)</label><input type="text" id="clp"
+            placeholder="your-preset"></div>
+        <div class="fg"><label>New Admin Password</label><input type="password" id="npw"
+            placeholder="Leave blank to keep current"></div>
+        <button class="submit-btn" onclick="saveSettings()">Save ✅</button>
+        <button class="submit-btn" onclick="exportAll()"
+          style="margin-top:12px;background:rgba(255,255,255,.07);color:var(--text)">📤 Export Data (JSON)</button>
+        <button class="submit-btn" onclick="if(confirm('Reset all projects to defaults?'))resetProjects()"
+          style="margin-top:10px;background:rgba(255,107,53,.15);color:var(--g1)">🔄 Reset Projects to Default</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal-backdrop" id="pm" onclick="if(event.target===this)closePM()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closePM()">✕</button>
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+        <span id="pm-emoji" style="font-size:36px;flex-shrink:0"></span>
+        <div>
+          <h2 id="pm-title" style="font-size:20px;line-height:1.3;margin-bottom:4px"></h2>
+          <div id="pm-client" style="font-size:12px;color:var(--g3);font-weight:600"></div>
+        </div>
+      </div>
+      <span id="pm-cat"
+        style="background:rgba(78,205,196,.15);color:var(--g3);padding:3px 10px;border-radius:50px;font-size:10px;font-weight:700;display:inline-block;margin-bottom:14px"></span>
+      <img id="pm-img" style="width:100%;border-radius:12px;margin-bottom:16px;display:none">
+      <p id="pm-desc" style="color:var(--muted);font-size:14px;line-height:1.75;margin-bottom:18px"></p>
+      <div id="pm-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px"></div>
+      <div id="pm-links" style="display:flex;gap:14px"></div>
+    </div>
+  </div>
+
+  <!-- BLOG MODAL -->
+  <div class="modal-backdrop" id="bm" onclick="if(event.target===this)closeBM()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeBM()">✕</button>
+      <h2 id="bm-title"></h2>
+      <div style="display:flex;gap:10px;margin:10px 0 18px;flex-wrap:wrap">
+        <span id="bm-cat"
+          style="background:var(--grad);color:#000;padding:3px 10px;border-radius:50px;font-size:10px;font-weight:700"></span>
+        <span id="bm-date" style="font-size:11px;color:var(--muted);align-self:center"></span>
+      </div>
+      <img id="bm-img" class="modal-img">
+      <div id="bm-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // ── DATA ──
+    const S = {
+      get(k) { try { return JSON.parse(localStorage.getItem(k)) || [] } catch { return [] } },
+      set(k, v) { localStorage.setItem(k, JSON.stringify(v)) },
+      obj(k, d = {}) { try { return JSON.parse(localStorage.getItem(k)) || d } catch { return d } }
+    };
+
+    const DEF = [
+      { id: 1, title: 'AI Fashion Studio — Dress Try-On (Image)', client: 'kvnavi', category: 'ai', desc: 'User uploads dress → Gemini 2.5 Flash places it on a Bangladeshi female model → photorealistic try-on image delivered via Gmail.', tags: ['n8n', 'Gemini 2.5 Flash', 'Gmail OAuth2'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🎽' },
+      { id: 2, title: 'AI Fashion Studio — Dress Try-On (Video)', client: 'kvnavi', category: 'ai', desc: 'User uploads model image → Veo 3.1 generates an 8-second fashion video → delivered via Gmail.', tags: ['n8n', 'Veo 3.1', 'Gmail OAuth2'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🎬' },
+      { id: 3, title: 'Social Media Trend & Content Automation', client: 'kvnavi', category: 'social', desc: 'Scrapes trending content from TikTok, Instagram, Facebook, YouTube → AI analysis → branded video → Gmail approval → auto-publish.', tags: ['n8n', 'Apify', 'Gemini', 'Veo 3', 'Shotstack', 'Upload-Post'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📱' },
+      { id: 4, title: 'Delco iT Brand Content System', client: 'Delco IT', category: 'ai', desc: 'Client emails idea → Gemini creates branded IT content → image/video → Cloudinary logo overlay → approval → Google Sheets.', tags: ['n8n', 'Gemini 2.5 Pro', 'Veo 3', 'Cloudinary', 'Gmail'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🏢' },
+      { id: 5, title: 'Telegram Social Media Content Bot', client: 'Client Project', category: 'social', desc: 'Keyword via Telegram → AI creates viral content → image/video → Telegram approval → auto-publish to TikTok, Facebook, Instagram, LinkedIn.', tags: ['n8n', 'Telegram', 'Gemini', 'Veo 3', 'Upload-Post'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📣' },
+      { id: 6, title: 'WordPress Blog + Social Auto-Publisher', client: 'Client Project', category: 'social', desc: 'Chat input → AI generates blog post + social captions → AI image → published to WordPress → logged to Google Sheets.', tags: ['n8n', 'OpenAI GPT Image', 'WordPress API', 'Google Sheets'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🌐' },
+      { id: 7, title: 'WhatsApp Attendance Tracking System', client: 'Vibe Academy', category: 'whatsapp', desc: 'Employees check in/out via WhatsApp. System parses 3 shifts, calculates hours, generates monthly Gmail reports.', tags: ['n8n', 'Green API', 'Google Sheets', 'Gmail'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '✅' },
+      { id: 8, title: 'WhatsApp AI Customer Support Bot', client: 'Client Project', category: 'whatsapp', desc: 'Incoming WhatsApp messages → GPT-4o-mini reads and replies instantly — zero response time.', tags: ['n8n', 'WaSender API', 'OpenAI GPT-4o-mini'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🤖' },
+      { id: 9, title: 'AI Salon Booking Bot (Arabic/English)', client: 'Saudi Arabia Salon', category: 'whatsapp', desc: 'Full WhatsApp booking system — 5-stage flow, Google Calendar availability, Supabase DB, bilingual Arabic/English.', tags: ['n8n', 'Whapi', 'GPT-4o-mini', 'Postgres Memory', 'Google Calendar', 'Supabase'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '💅' },
+      { id: 10, title: 'Investment Research & Social Publishing', client: 'Henriot', category: 'social', desc: 'Transforms investment research into Wix blog drafts and auto-posts to Facebook, Instagram, and X — controlled via Google Sheets approval.', tags: ['n8n', 'Wix API', 'Facebook Graph API', 'Instagram API', 'X API'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📊' },
+      { id: 11, title: 'Lead Generation via Google Maps + SerpAPI', client: 'Personal / Client', category: 'automation', desc: 'Daily automated Google search → business websites → email scraping → Google Sheets with status tracking.', tags: ['n8n', 'SerpAPI', 'Apify', 'Google Sheets'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🔍' },
+      { id: 12, title: 'AI Cold Email Outreach Agent', client: 'Choose Clarity (Netherlands)', category: 'automation', desc: 'Pending leads → Claude Opus writes personalized B2B/B2C cold emails → saves as Gmail drafts → notifies client.', tags: ['n8n', 'Claude Opus', 'Gmail OAuth2', 'Google Sheets'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '✉️' },
+      { id: 13, title: 'AI Receipt & Invoice Tracker', client: 'Personal Project', category: 'automation', desc: 'Gmail monitors receipts → Gemini OCR extracts data → categorizes → saves to Sheets → 3-day summary report.', tags: ['n8n', 'Gmail OAuth2', 'Gemini 2.5 Flash', 'Google Sheets'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🧾' },
+      { id: 14, title: 'AI Daily Email Briefing System', client: 'Choose Clarity (Netherlands)', category: 'automation', desc: 'Every morning: reads unread emails → Claude AI summarizes and suggests replies → Google Docs briefing → sends link.', tags: ['n8n', 'Claude Opus', 'Gmail OAuth2', 'Google Docs'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📰' },
+      { id: 15, title: 'JotForm → Google Sheets Auto-Sync', client: 'Client Project', category: 'automation', desc: 'JotForm submission triggers instant save to Google Sheets with name, email, and timestamp.', tags: ['n8n', 'JotForm API', 'Google Sheets OAuth2'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📝' },
+      { id: 16, title: 'MediMate — AI Healthcare Assistant', client: 'Research Project', category: 'ai', desc: 'Combines ML symptom checker, CNN medical image analyser, and LLM for early healthcare guidance.', tags: ['FastAPI', 'PyTorch', 'LLM', 'Computer Vision', 'Vercel'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🏥' },
+      { id: 17, title: 'Bondhu — Mental Health Support AI', client: 'Research Project', category: 'ai', desc: 'Emotion-aware bilingual chatbot (Bangla/English) detecting emotions via transformers and generating empathetic responses.', tags: ['Transformers', 'NLP', 'LLM', 'FastAPI', 'Bangla NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '💚' },
+      { id: 18, title: 'Medical Privacy RAG System', client: 'Research Project', category: 'ai', desc: 'Privacy-preserving RAG chatbot answering medical queries only from private documents — zero hallucination.', tags: ['LLM', 'RAG', 'LangChain', 'Vector DB', 'Pinecone'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🔒' },
+      { id: 19, title: 'RAG Knowledge System (n8n Pipeline)', client: 'Client Project', category: 'ai', desc: 'Users upload PDFs → system embeds with Gemini, stores in Pinecone → AI answers from the knowledge base.', tags: ['n8n', 'RAG', 'Google Gemini', 'Pinecone'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📚' },
+      { id: 20, title: 'Depression Detection System', client: 'IEEE STI 2025 Research', category: 'ai', desc: 'Transformer-based model detecting depression and suicidal risk from Bangla social media posts. Published IEEE STI 2025.', tags: ['Transformers', 'BERT', 'NLP', 'PyTorch', 'Bangla NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🧠' },
+      { id: 21, title: 'GenAI Content Approval Pipeline', client: 'Client Project', category: 'social', desc: 'Topic → RSS/Google News scraping → AI scores relevance → generates posts for LinkedIn, Instagram, Facebook, X, TikTok, YouTube.', tags: ['n8n', 'LLM', 'AI Agent', 'RSS', 'Content Generation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📋' },
+      { id: 22, title: 'AI Customer Support Automation', client: 'Client Project', category: 'ai', desc: 'End-to-end LLM pipeline — classifies intent, retrieves via RAG, handles orders, generates replies. ~60% workload reduction.', tags: ['LLM', 'RAG', 'LangChain', 'n8n', 'FastAPI'], github: 'https://github.com/hazratali1/AI-Agent-And-Automation', demo: '', img: '', emoji: '🎯' },
+      { id: 23, title: 'Multilingual AI Restaurant Agent', client: 'Client Project', category: 'whatsapp', desc: 'LLM restaurant assistant handling food orders and table bookings with auto language detection, Telegram notifications.', tags: ['n8n', 'LLM', 'AI Agent', 'Telegram', 'NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🍽️' },
+      { id: 24, title: 'LLM Inventory Management Agent', client: 'Client Project', category: 'automation', desc: 'AI agent interprets natural language to check stock, update products, and track inventory via Google Sheets.', tags: ['n8n', 'LLM', 'AI Agent', 'Google Sheets', 'NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📦' },
+      { id: 25, title: 'Shopify Product Metadata Extractor', client: 'Client Project', category: 'automation', desc: 'Scheduled GraphQL requests to Shopify API → retrieves all products and metafields with pagination.', tags: ['n8n', 'Shopify API', 'GraphQL', 'Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🛒' },
+      { id: 26, title: 'Crop Disease Detection System', client: 'Research Project', category: 'ai', desc: 'CNN-based image classifier identifying crop diseases from leaf photos — helps farmers take early action.', tags: ['CNN', 'TensorFlow', 'Image Processing', 'Computer Vision'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🌱' },
+      { id: 27, title: 'University Management System', client: 'Academic Project', category: 'other', desc: 'Full-featured university ERP with student enrollment, attendance tracking, grade management, and admin dashboard.', tags: ['PHP', 'MySQL', 'HTML', 'CSS', 'JavaScript'], github: 'https://github.com/hazratali1/My-Projects', demo: '', img: '', emoji: '🎓' },
+      { id: 28, title: 'Micro Tutor — AI Learning Assistant', client: 'Research Project', category: 'ai', desc: 'Multilingual AI tutor supporting Bangla and English learners using vision-language models and LLM-generated adaptive explanations.', tags: ['LLM', 'VLM', 'NLP', 'Python', 'Bangla NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📖' },
+      { id: 29, title: 'Fake News Detection System', client: 'Research Project', category: 'ai', desc: 'ML and transformer-based classifier identifying misinformation articles. Combines traditional ML with fine-tuned BERT models.', tags: ['ML', 'NLP', 'BERT', 'Transformers'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📰' },
+      { id: 30, title: 'Blood Donation Management System', client: 'Academic Project', category: 'other', desc: 'NLP-powered platform where users find blood donors using natural language queries with location extraction.', tags: ['NLP', 'Web', 'PHP', 'MySQL', 'Database'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🩸' },
+      { id: 31, title: 'AI Object Detection System', client: 'Research Project', category: 'ai', desc: 'Real-time object detection from images and live video streams using YOLO and CNN architectures with OpenCV.', tags: ['Computer Vision', 'YOLO', 'CNN', 'OpenCV', 'PyTorch'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '👁️' },
+      { id: 32, title: 'Suicide Risk Prediction System', client: 'Research Project', category: 'ai', desc: 'Transformer-based early warning system identifying suicidal risk signals in Bangla text data for mental health intervention.', tags: ['Transformer', 'NLP', 'Deep Learning', 'Bangla NLP'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🧩' },
+      { id: 33, title: 'Order Tracking Automation', client: 'Client Project', category: 'automation', desc: 'Automated workflow that tracks orders in real time and sends status notifications via email and messaging platforms.', tags: ['n8n', 'API Integration', 'Automation', 'Email'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📦' },
+      { id: 34, title: 'Customer Support Email Automation', client: 'Client Project', category: 'automation', desc: 'AI-powered system that classifies, routes and auto-replies to customer emails using intent recognition.', tags: ['LLM', 'n8n', 'Automation', 'Email', 'Intent Recognition'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '📩' },
+      { id: 35, title: 'E-Commerce Inventory Management', client: 'Client Project', category: 'automation', desc: 'Smart inventory monitoring with automated low-stock alerts, order tracking and reporting dashboards.', tags: ['n8n', 'APIs', 'Database', 'Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🛒' },
+      { id: 36, title: 'GenAI YouTube Video Creator', client: 'Client Project', category: 'ai', desc: 'Automatically generates AI-powered video scripts and uploads to YouTube using Google Gemini and YouTube API.', tags: ['n8n', 'Google Gemini', 'YouTube API', 'GenAI'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🎥' },
+      { id: 37, title: 'Custom Puppeteer Login Automation', client: 'Client Project', category: 'automation', desc: 'Watches Gmail for login links, sends to Apify browser automation to log into platforms and scrape authenticated data.', tags: ['n8n', 'Apify', 'Gmail', 'Puppeteer', 'Browser Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🤖' },
+      { id: 38, title: 'Typeform → Duplicate-Safe Credits System', client: 'Client Project', category: 'automation', desc: 'Manages user submissions and credit balance with duplicate detection, payment validation and Google Sheets sync.', tags: ['n8n', 'Typeform', 'Google Sheets', 'Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '💳' },
+      { id: 39, title: 'Census Geocoder + SerpAPI MAP', client: 'Client Project', category: 'automation', desc: 'Converts addresses into geographic data and pulls census statistics using OpenStreetMap and U.S. Census APIs.', tags: ['n8n', 'Census API', 'OpenStreetMap', 'SerpAPI'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '🗺️' },
+      { id: 40, title: 'Website Customer Support Chatbot', client: 'Client Project', category: 'ai', desc: 'Deployable chatbot for business websites handling FAQs, product enquiries and support tickets 24/7 without human intervention.', tags: ['n8n', 'LLM', 'Chatbot', 'Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '💬' },
+    ];
+
+    // ── INIT ──
+    window.onload = () => {
+      S.set('projects', DEF);
+      renderProj('all');
+      renderBlog();
+      renderALists();
+      loadSettings();
+      initFade();
+      initNav();
+    };
+
+    // ── NAV HIGHLIGHT ──
+    function initNav() {
+      const secs = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.nav-links a');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+            if (a) a.classList.add('active');
+          }
+        });
+      }, { threshold: 0.45 });
+      secs.forEach(s => obs.observe(s));
+    }
+
+    // ── MOBILE MENU ──
+    function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open') }
+    function closeMenu() { document.getElementById('mobile-menu').classList.remove('open') }
+
+    // ── FADE ANIMATIONS ──
+    function initFade() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target) } });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+    }
+
+    // ── PROJECTS ──
+    function renderProj(f) {
+      const all = S.get('projects');
+      const data = f === 'all' ? all : all.filter(p => p.category === f);
+      const bg = ['rgba(168,85,247,.12),rgba(78,205,196,.12)', 'rgba(255,107,53,.12),rgba(247,201,72,.12)', 'rgba(69,183,209,.12),rgba(78,205,196,.12)', 'rgba(247,201,72,.12),rgba(255,107,53,.12)'];
+      document.getElementById('proj-grid').innerHTML = data.map((p, i) => `
+    <div class="proj-card fade" onclick="openPM(${p.id})" style="cursor:pointer">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,${bg[i % 4]})">
+        ${p.img ? `<img src="${p.img}" alt="${p.title}">` : `<span class="proj-thumb-emoji">${p.emoji || '🚀'}</span>`}
+        <span class="proj-cat-badge">${p.category}</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-client">${p.client || ''}</div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="proj-pills">${(p.tags || []).map(t => `<span>${t}</span>`).join('')}</div>
+        <div class="proj-links" onclick="event.stopPropagation()">
+          ${p.github ? `<a href="${p.github}" target="_blank">GitHub →</a>` : ''}
+          ${p.demo ? `<a href="${p.demo}" target="_blank">Live Demo →</a>` : ''}
+          <span style="font-size:11px;color:var(--muted)">Click card for details</span>
+        </div>
+      </div>
+    </div>`).join('');
+      initFade();
+    }
+
+    document.querySelectorAll('.filt').forEach(b => b.addEventListener('click', function () {
+      document.querySelectorAll('.filt').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+      renderProj(this.dataset.f);
+    }));
+
+    // ── BLOG ──
+    function renderBlog() {
+      const posts = S.get('blogPosts').filter(p => !p.draft);
+      const grid = document.getElementById('blog-grid');
+      if (!posts.length) {
+        grid.innerHTML = `<div class="blog-empty"><div class="blog-empty-icon">📝</div><p>No blog posts yet. Add your first post from the admin panel!</p></div>`;
+        return;
+      }
+      grid.innerHTML = posts.map(p => `
+    <div class="blog-card fade" onclick="openBM(${p.id})">
+      <div class="blog-thumb">${p.img ? `<img src="${p.img}" alt="${p.title}">` : '📝'}</div>
+      <div class="blog-body">
+        <div class="blog-meta"><span class="blog-cat-badge">${p.category}</span><span class="blog-date">${new Date(p.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span></div>
+        <h3>${p.title}</h3>
+        <p>${p.summary || ''}</p>
+        <div class="blog-read">Read More →</div>
+      </div>
+    </div>`).join('');
+      initFade();
+    }
+
+    function openBM(id) {
+      const p = S.get('blogPosts').find(x => x.id === id); if (!p) return;
+      document.getElementById('bm-title').textContent = p.title;
+      document.getElementById('bm-cat').textContent = p.category;
+      document.getElementById('bm-date').textContent = new Date(p.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      const img = document.getElementById('bm-img');
+      if (p.img) { img.src = p.img; img.style.display = 'block' } else { img.style.display = 'none' }
+      document.getElementById('bm-content').innerHTML = p.content || p.summary || '';
+      document.getElementById('bm').classList.add('open');
+    }
+    function closeBM() { document.getElementById('bm').classList.remove('open') }
+
+    // ── EXP TOGGLE ──
+    function toggleExp(el) { el.classList.toggle('open') }
+
+    // ── EMAILJS INIT ──
+    // Setup: emailjs.com → create account → add Email Service → create Template
+    // Template variables: {{from_name}}, {{from_email}}, {{service}}, {{message}}, {{to_name}}
+    // Replace rpfF_Tte2Ar4T2xX7, service_oqbg1yp, template_89a8z2v below
+    (function () {
+      if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: "rpfF_Tte2Ar4T2xX7" });
+    })();
+
+    // ── CONTACT ──
+    function sendMsg(e) {
+      e.preventDefault();
+      const btn = document.getElementById('cf-btn');
+      const name = document.getElementById('cf-name').value;
+      const email = document.getElementById('cf-email').value;
+      const service = document.getElementById('cf-service').value;
+      const message = document.getElementById('cf-message').value;
+
+      btn.textContent = 'Sending... ⏳';
+      btn.disabled = true;
+
+      if (typeof emailjs === 'undefined') {
+        // Fallback: open mailto
+        const subject = encodeURIComponent('Project Inquiry: ' + service);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nService: ' + service + '\n\nMessage:\n' + message);
+        window.open('mailto:hazrat.ai.automation@gmail.com?subject=' + subject + '&body=' + body);
+        btn.textContent = 'Send Message 🚀';
+        btn.disabled = false;
+        return;
+      }
+
+      emailjs.send('service_oqbg1yp', 'template_89a8z2v', {
+        name: name,
+        email: email,
+        service: service,
+        message: message,
+        time: new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      }).then(() => {
+        btn.textContent = 'Sent! ✅';
+        document.getElementById('contact-form').reset();
+        setTimeout(() => { btn.textContent = 'Send Message 🚀'; btn.disabled = false }, 3000);
+      }).catch(err => {
+        console.error('EmailJS error:', err);
+        // Fallback to mailto
+        const subject = encodeURIComponent('Project Inquiry: ' + service);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nService: ' + service + '\n\nMessage:\n' + message);
+        window.open('mailto:hazrat.ai.automation@gmail.com?subject=' + subject + '&body=' + body);
+        btn.textContent = 'Send Message 🚀';
+        btn.disabled = false;
+      });
+    }
+
+    // ── PROJECT MODAL ──
+    function openPM(id) {
+      const p = S.get('projects').find(x => x.id === id); if (!p) return;
+      document.getElementById('pm-emoji').textContent = p.emoji || '🚀';
+      document.getElementById('pm-title').textContent = p.title;
+      document.getElementById('pm-client').textContent = 'Client: ' + (p.client || '');
+      document.getElementById('pm-cat').textContent = p.category;
+      document.getElementById('pm-desc').textContent = p.desc;
+      const img = document.getElementById('pm-img');
+      if (p.img) { img.src = p.img; img.style.display = 'block' } else { img.style.display = 'none' }
+      document.getElementById('pm-tags').innerHTML = (p.tags || []).map(t => `<span style="background:rgba(255,255,255,.06);padding:4px 10px;border-radius:20px;font-size:11px;color:var(--muted)">${t}</span>`).join('');
+      document.getElementById('pm-links').innerHTML = `
+    ${p.github ? `<a href="${p.github}" target="_blank" style="background:var(--grad);color:#000;padding:9px 20px;border-radius:50px;font-size:12px;font-weight:700;text-decoration:none">🐙 GitHub</a>` : ''}
+    ${p.demo ? `<a href="${p.demo}" target="_blank" style="border:1px solid var(--border);color:var(--text);padding:9px 20px;border-radius:50px;font-size:12px;text-decoration:none">🚀 Live Demo</a>` : ''}`;
+      document.getElementById('pm').classList.add('open');
+    }
+    function closePM() { document.getElementById('pm').classList.remove('open') }
+
+    // ── ADMIN ──
+    let loggedIn = false;
+    function toggleAdmin() {
+      const p = document.getElementById('admin-panel');
+      p.classList.toggle('open');
+      if (!p.classList.contains('open')) return;
+      if (!loggedIn) { document.getElementById('admin-login-wrap').style.display = 'block'; document.getElementById('admin-dash').style.display = 'none' }
+    }
+    function adminLogin() {
+      const cfg = S.obj('cfg', { pw: 'admin123' });
+      if (document.getElementById('ap').value === cfg.pw) {
+        loggedIn = true;
+        document.getElementById('admin-login-wrap').style.display = 'none';
+        document.getElementById('admin-dash').style.display = 'block';
+        renderALists();
+      } else { alert('❌ Wrong password!') }
+    }
+    function aTab(id, btn) {
+      document.querySelectorAll('.atab').forEach(b => b.classList.remove('active'));
+      ['at-proj', 'at-blog', 'at-set'].forEach(i => document.getElementById(i).style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('at-' + id).style.display = 'block';
+    }
+
+    // ── ADD PROJECT ──
+    function addProj() {
+      const t = document.getElementById('pt').value.trim();
+      if (!t) { alert('Title required!'); return }
+      const projs = S.get('projects');
+      projs.unshift({ id: Date.now(), title: t, client: document.getElementById('pcl').value, category: document.getElementById('pc').value, desc: document.getElementById('pd').value, tags: document.getElementById('ptg').value.split(',').map(x => x.trim()).filter(Boolean), img: document.getElementById('piu').value || '', github: document.getElementById('pgh').value, demo: document.getElementById('pdm').value, emoji: '🚀' });
+      S.set('projects', projs);
+      renderProj('all'); renderALists();
+      ['pt', 'pcl', 'pd', 'ptg', 'piu', 'pgh', 'pdm'].forEach(i => document.getElementById(i).value = '');
+      document.getElementById('pip').style.display = 'none';
+      alert('✅ Project added!');
+    }
+
+    // ── ADD BLOG ──
+    function addBlog(draft = false) {
+      const t = document.getElementById('bt').value.trim();
+      if (!t) { alert('Title required!'); return }
+      const posts = S.get('blogPosts');
+      posts.unshift({ id: Date.now(), title: t, category: document.getElementById('bc').value, summary: document.getElementById('bs').value, content: document.getElementById('bco').value, img: document.getElementById('biu').value || '', tags: document.getElementById('btg').value.split(',').map(x => x.trim()).filter(Boolean), date: new Date().toISOString(), draft });
+      S.set('blogPosts', posts);
+      renderBlog(); renderALists();
+      ['bt', 'bs', 'bco', 'biu', 'btg'].forEach(i => document.getElementById(i).value = '');
+      document.getElementById('bip').style.display = 'none';
+      alert(draft ? '💾 Saved as draft!' : '🚀 Published!');
+    }
+
+    // ── ADMIN LISTS ──
+    function renderALists() {
+      const projs = S.get('projects');
+      document.getElementById('proj-count-label').textContent = `Projects (${projs.length})`;
+      document.getElementById('al-proj').innerHTML = projs.map(p => `<div class="alist-item"><div class="alist-item-info"><h5>${p.emoji || '🚀'} ${p.title}</h5><p>${p.client || ''} • ${p.category}</p></div><div class="alist-actions"><button class="btn-del" onclick="delProj(${p.id})">Delete</button></div></div>`).join('');
+      const posts = S.get('blogPosts');
+      document.getElementById('blog-count-label').textContent = `Blog Posts (${posts.length})`;
+      document.getElementById('al-blog').innerHTML = posts.map(p => `<div class="alist-item"><div class="alist-item-info"><h5>${p.title}${p.draft ? ' <span style="color:var(--g2);font-size:10px">[DRAFT]</span>' : ''}</h5><p>${p.category} • ${new Date(p.date).toLocaleDateString()}</p></div><div class="alist-actions"><button class="btn-del" onclick="delBlog(${p.id})">Delete</button></div></div>`).join('');
+    }
+
+    function delProj(id) { if (!confirm('Delete?')) return; S.set('projects', S.get('projects').filter(p => p.id !== id)); renderProj('all'); renderALists() }
+    function delBlog(id) { if (!confirm('Delete?')) return; S.set('blogPosts', S.get('blogPosts').filter(p => p.id !== id)); renderBlog(); renderALists() }
+    function resetProjects() { S.set('projects', DEF); renderProj('all'); renderALists(); alert('✅ Reset done!') }
+
+    // ── IMAGE HELPERS ──
+    function prevImg(inp, prevId, urlId) {
+      const f = inp.files[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = e => { const el = document.getElementById(prevId); el.src = e.target.result; el.style.display = 'block'; document.getElementById(urlId).value = e.target.result };
+      r.readAsDataURL(f);
+    }
+    function urlPrev(inp, prevId) {
+      const el = document.getElementById(prevId);
+      if (inp.value) { el.src = inp.value; el.style.display = 'block' } else { el.style.display = 'none' }
+    }
+
+    // ── SETTINGS ──
+    function saveSettings() {
+      const cfg = S.obj('cfg', { pw: 'admin123' });
+      S.set('cfg', { cloudName: document.getElementById('cln').value, cloudPreset: document.getElementById('clp').value, pw: document.getElementById('npw').value || cfg.pw });
+      alert('✅ Saved!');
+    }
+    function loadSettings() {
+      const cfg = S.obj('cfg', {});
+      if (cfg.cloudName) document.getElementById('cln').value = cfg.cloudName;
+      if (cfg.cloudPreset) document.getElementById('clp').value = cfg.cloudPreset;
+    }
+    function exportAll() {
+      const b = new Blob([JSON.stringify({ projects: S.get('projects'), blogPosts: S.get('blogPosts'), cfg: S.obj('cfg') }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'hazrat-portfolio-data.json'; a.click();
+    }
+  </script>
+</body>
+
+</html>
