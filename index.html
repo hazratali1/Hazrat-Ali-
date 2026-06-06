@@ -2608,7 +2608,7 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       document.getElementById('proj-grid').innerHTML = visibleData.map((p, i) => `
     <div class="proj-card fade" onclick="openPM(${p.id})" style="cursor:pointer">
       <div class="proj-thumb" style="background:linear-gradient(135deg,${bg[i % 4]})">
-        ${p.img ? `<img src="${p.img}" alt="${p.title}">` : `<span class="proj-thumb-emoji">${p.emoji || '🚀'}</span>`}
+        ${p.img ? `<img src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">` : `<span class="proj-thumb-emoji">${p.emoji || '🚀'}</span>`}
         <span class="proj-cat-badge">${p.category}</span>
       </div>
       <div class="proj-body">
@@ -2644,7 +2644,7 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       }
       grid.innerHTML = posts.map(p => `
     <div class="blog-card fade" onclick="openBM(${p.id})">
-      <div class="blog-thumb">${p.img ? `<img src="${p.img}" alt="${p.title}">` : '📝'}</div>
+      <div class="blog-thumb">${p.img ? `<img src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">` : '📝'}</div>
       <div class="blog-body">
         <div class="blog-meta"><span class="blog-cat-badge">${p.category}</span><span class="blog-date">${new Date(p.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span></div>
         <h3>${p.title}</h3>
@@ -2804,11 +2804,42 @@ The biggest challenge was handling Veo's async API — it returns an operation I
     function resetProjects() { S.set('projects', DEF); renderProj('all'); renderALists(); alert('✅ Reset done!') }
 
     // ── IMAGE HELPERS ──
-    function prevImg(inp, prevId, urlId) {
+    async function prevImg(inp, prevId, urlId) {
       const f = inp.files[0]; if (!f) return;
-      const r = new FileReader();
-      r.onload = e => { const el = document.getElementById(prevId); el.src = e.target.result; el.style.display = 'block'; document.getElementById(urlId).value = e.target.result };
-      r.readAsDataURL(f);
+
+      const el = document.getElementById(prevId);
+      const urlInput = document.getElementById(urlId);
+      const cfg = S.obj('cfg', {});
+
+      // Show local preview immediately
+      el.src = URL.createObjectURL(f);
+      el.style.display = 'block';
+
+      if (cfg.cloudName && cfg.cloudPreset) {
+        urlInput.value = 'Uploading to Cloudinary...';
+        try {
+          const fd = new FormData();
+          fd.append('file', f);
+          fd.append('upload_preset', cfg.cloudPreset);
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${cfg.cloudName}/image/upload`, { method: 'POST', body: fd });
+          const data = await res.json();
+          if (data.secure_url) {
+            urlInput.value = data.secure_url;
+            el.src = data.secure_url;
+          } else {
+            alert('❌ Cloudinary error: ' + (data.error?.message || 'Unknown error'));
+            urlInput.value = '';
+          }
+        } catch (err) {
+          alert('❌ Cloudinary upload failed. Check your network.');
+          urlInput.value = '';
+        }
+      } else {
+        // Fallback to Base64 local storage if Cloudinary is not configured
+        const r = new FileReader();
+        r.onload = e => { urlInput.value = e.target.result };
+        r.readAsDataURL(f);
+      }
     }
     function urlPrev(inp, prevId) {
       const el = document.getElementById(prevId);
