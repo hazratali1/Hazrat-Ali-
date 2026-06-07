@@ -1059,6 +1059,110 @@
       color: var(--g2)
     }
 
+    /* ── ACHIEVEMENTS ── */
+    #achievements {
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 56px
+    }
+
+    .ach-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .4s cubic-bezier(.16, 1, .3, 1);
+      position: relative;
+      cursor: default
+    }
+
+    .ach-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,85,247,.08), rgba(78,205,196,.08));
+      opacity: 0;
+      transition: .4s
+    }
+
+    .ach-card:hover {
+      border-color: rgba(168, 85, 247, .4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4), 0 0 30px rgba(168, 85, 247, .1)
+    }
+
+    .ach-card:hover::before {
+      opacity: 1
+    }
+
+    .ach-thumb {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, rgba(168,85,247,.2), rgba(78,205,196,.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .ach-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .ach-body {
+      padding: 20px;
+      position: relative;
+      z-index: 1
+    }
+
+    .ach-year-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(168,85,247,.2), rgba(78,205,196,.2));
+      border: 1px solid rgba(168,85,247,.3);
+      color: var(--g5);
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .ach-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px
+    }
+
+    .ach-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .ach-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted)
+    }
+
+    .ach-empty-icon {
+      font-size: 48px;
+      margin-bottom: 14px
+    }
+
     /* ── BLOG ── */
     #blog {
       background: rgba(255, 255, 255, .015)
@@ -1765,6 +1869,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1782,6 +1887,7 @@
       <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
       <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
       <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+      <li><a href="#achievements" onclick="closeMenu()">Achievements</a></li>
       <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
       <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     </ul>
@@ -2095,6 +2201,14 @@
     </div>
   </section>
 
+  <!-- ── ACHIEVEMENTS ── -->
+  <section id="achievements">
+    <span class="section-tag">Milestones</span>
+    <h2 class="section-title fade">My <span class="grad-text">Achievements</span></h2>
+    <p class="section-desc fade">Certifications, awards, and milestones from my journey in AI & Automation.</p>
+    <div class="ach-grid" id="ach-grid"></div>
+  </section>
+
   <!-- ── BLOG ── -->
   <section id="blog">
     <span class="section-tag">Insights</span>
@@ -2251,6 +2365,7 @@
       <div class="admin-tabs">
         <button class="atab active" onclick="aTab('proj',this)">📁 Projects</button>
         <button class="atab" onclick="aTab('blog',this)">📝 Blog</button>
+        <button class="atab" onclick="aTab('ach',this)">🏆 Achievements</button>
         <button class="atab" onclick="aTab('set',this)">⚙️ Settings</button>
       </div>
       <!-- PROJECTS -->
@@ -2294,6 +2409,32 @@
         <div class="admin-list">
           <h4 id="proj-count-label">Projects</h4>
           <div id="al-proj"></div>
+        </div>
+      </div>
+      <!-- ACHIEVEMENTS -->
+      <div id="at-ach" class="admin-card" style="display:none">
+        <h3>Add New Achievement</h3>
+        <div class="fg"><label>Title</label><input type="text" id="acht" placeholder="e.g. Winner of Hackathon 2024"></div>
+        <div class="form-row">
+          <div class="fg"><label>Date / Year</label><input type="text" id="achd" placeholder="e.g. August 2024"></div>
+          <div class="fg"><label>Emoji Icon</label><input type="text" id="ache" placeholder="🏆" maxlength="2"></div>
+        </div>
+        <div class="fg"><label>Description</label><textarea id="achdc" placeholder="Brief description of this achievement..."></textarea></div>
+        <div class="fg">
+          <label>Certificate / Image</label>
+          <div class="upload-zone" onclick="document.getElementById('achif').click()">
+            <div class="uz-icon">🏅</div>
+            <p>Click to upload image from device</p>
+            <p style="font-size:11px;margin-top:4px">Or paste any image URL below</p>
+            <input type="file" id="achif" accept="image/*" style="display:none" onchange="prevImg(this,'achip','achiu')">
+            <img id="achip" class="img-prev">
+          </div>
+          <input type="text" id="achiu" class="fg" placeholder="https://..." oninput="urlPrev(this,'achip')" style="margin-top:8px">
+        </div>
+        <button class="submit-btn" onclick="addAch()" style="margin-top:8px">Add Achievement 🏆</button>
+        <div class="admin-list">
+          <h4 id="ach-count-label">Achievements</h4>
+          <div id="al-ach"></div>
         </div>
       </div>
       <!-- BLOG -->
@@ -2392,6 +2533,22 @@
     </div>
   </div>
 
+  <!-- ACHIEVEMENT MODAL -->
+  <div class="modal-backdrop" id="am" onclick="if(event.target===this)closeAM()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeAM()">✕</button>
+      <div style="text-align:center;margin-bottom:18px">
+        <span id="am-emoji" style="font-size:52px;display:block;margin-bottom:10px"></span>
+        <h2 id="am-title" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1.3"></h2>
+      </div>
+      <div style="display:flex;gap:10px;margin:10px 0 18px;flex-wrap:wrap;justify-content:center">
+        <span id="am-date" style="background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(78,205,196,.2));border:1px solid rgba(168,85,247,.3);color:var(--g5);padding:4px 14px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase"></span>
+      </div>
+      <img id="am-img" class="modal-img" style="display:none;width:100%;border-radius:12px;margin-bottom:16px">
+      <div id="am-desc" style="color:var(--muted);font-size:14px;line-height:1.75;text-align:center"></div>
+    </div>
+  </div>
+
   <script>
     // ── DATA ──
     const S = {
@@ -2445,7 +2602,9 @@
 
     // ── INIT ──
     window.onload = () => {
-      S.set('projects', DEF);
+      if (!S.get('projects').length) {
+        S.set('projects', DEF);
+      }
       // Set default blog posts if empty
       if (!S.get('blogPosts').length) {
         S.set('blogPosts', [
@@ -2485,6 +2644,7 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       }
       renderProj('all');
       renderBlog();
+      renderAch();
       renderALists();
       loadSettings();
       initFade();
@@ -2522,7 +2682,7 @@ The biggest challenge was handling Veo's async API — it returns an operation I
 
     // ── CARD TILT ──
     function initTilt() {
-      document.querySelectorAll('.proj-card,.skill-card,.blog-card').forEach(card => {
+      document.querySelectorAll('.proj-card,.skill-card,.blog-card,.ach-card').forEach(card => {
         card.addEventListener('mousemove', e => {
           const r = card.getBoundingClientRect();
           const x = (e.clientX - r.left) / r.width - .5;
@@ -2655,6 +2815,27 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       initFade();
     }
 
+    // ── ACHIEVEMENTS ──
+    function renderAch() {
+      const achs = S.get('achievements');
+      const grid = document.getElementById('ach-grid');
+      if (!achs.length) {
+        grid.innerHTML = `<div class="ach-empty"><div class="ach-empty-icon">🏆</div><p>No achievements yet. Add your first from the admin panel!</p></div>`;
+        return;
+      }
+      grid.innerHTML = achs.map(a => `
+    <div class="ach-card fade" onclick="openAM(${a.id})" style="cursor:pointer">
+      <div class="ach-thumb">${a.img ? `<img src="${a.img}" alt="${a.title}" onerror="this.style.display='none'">` : `<span>${a.emoji || '\ud83c\udfc6'}</span>`}</div>
+      <div class="ach-body">
+        <div class="ach-year-badge">${a.date || 'Achievement'}</div>
+        <h3>${a.title}</h3>
+        <p>${a.desc || ''}</p>
+      </div>
+    </div>`).join('');
+      initFade();
+      setTimeout(initTilt, 100);
+    }
+
     function openBM(id) {
       const p = S.get('blogPosts').find(x => x.id === id); if (!p) return;
       document.getElementById('bm-title').textContent = p.title;
@@ -2666,6 +2847,19 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       document.getElementById('bm').classList.add('open');
     }
     function closeBM() { document.getElementById('bm').classList.remove('open') }
+
+    // ── ACHIEVEMENT MODAL ──
+    function openAM(id) {
+      const a = S.get('achievements').find(x => x.id === id); if (!a) return;
+      document.getElementById('am-emoji').textContent = a.emoji || '\ud83c\udfc6';
+      document.getElementById('am-title').textContent = a.title;
+      document.getElementById('am-date').textContent = a.date || '';
+      const img = document.getElementById('am-img');
+      if (a.img) { img.src = a.img; img.style.display = 'block' } else { img.style.display = 'none' }
+      document.getElementById('am-desc').textContent = a.desc || '';
+      document.getElementById('am').classList.add('open');
+    }
+    function closeAM() { document.getElementById('am').classList.remove('open') }
 
     // ── EXP TOGGLE ──
     function toggleExp(el) { el.classList.toggle('open') }
@@ -2758,7 +2952,7 @@ The biggest challenge was handling Veo's async API — it returns an operation I
     }
     function aTab(id, btn) {
       document.querySelectorAll('.atab').forEach(b => b.classList.remove('active'));
-      ['at-proj', 'at-blog', 'at-set'].forEach(i => document.getElementById(i).style.display = 'none');
+      ['at-proj', 'at-blog', 'at-ach', 'at-set'].forEach(i => document.getElementById(i).style.display = 'none');
       btn.classList.add('active');
       document.getElementById('at-' + id).style.display = 'block';
     }
@@ -2789,6 +2983,19 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       alert(draft ? '💾 Saved as draft!' : '🚀 Published!');
     }
 
+    // ── ADD ACHIEVEMENT ──
+    function addAch() {
+      const t = document.getElementById('acht').value.trim();
+      if (!t) { alert('Title required!'); return }
+      const achs = S.get('achievements');
+      achs.unshift({ id: Date.now(), title: t, date: document.getElementById('achd').value, emoji: document.getElementById('ache').value || '🏆', desc: document.getElementById('achdc').value, img: document.getElementById('achiu').value || '' });
+      S.set('achievements', achs);
+      renderAch(); renderALists();
+      ['acht', 'achd', 'ache', 'achdc', 'achiu'].forEach(i => document.getElementById(i).value = '');
+      document.getElementById('achip').style.display = 'none';
+      alert('✅ Achievement added!');
+    }
+
     // ── ADMIN LISTS ──
     function renderALists() {
       const projs = S.get('projects');
@@ -2797,10 +3004,14 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       const posts = S.get('blogPosts');
       document.getElementById('blog-count-label').textContent = `Blog Posts (${posts.length})`;
       document.getElementById('al-blog').innerHTML = posts.map(p => `<div class="alist-item"><div class="alist-item-info"><h5>${p.title}${p.draft ? ' <span style="color:var(--g2);font-size:10px">[DRAFT]</span>' : ''}</h5><p>${p.category} • ${new Date(p.date).toLocaleDateString()}</p></div><div class="alist-actions"><button class="btn-del" onclick="delBlog(${p.id})">Delete</button></div></div>`).join('');
+      const achs = S.get('achievements');
+      document.getElementById('ach-count-label').textContent = `Achievements (${achs.length})`;
+      document.getElementById('al-ach').innerHTML = achs.map(a => `<div class="alist-item"><div class="alist-item-info"><h5>${a.emoji || '🏆'} ${a.title}</h5><p>${a.date || ''}</p></div><div class="alist-actions"><button class="btn-del" onclick="delAch(${a.id})">Delete</button></div></div>`).join('');
     }
 
     function delProj(id) { if (!confirm('Delete?')) return; S.set('projects', S.get('projects').filter(p => p.id !== id)); renderProj('all'); renderALists() }
     function delBlog(id) { if (!confirm('Delete?')) return; S.set('blogPosts', S.get('blogPosts').filter(p => p.id !== id)); renderBlog(); renderALists() }
+    function delAch(id) { if (!confirm('Delete?')) return; S.set('achievements', S.get('achievements').filter(a => a.id !== id)); renderAch(); renderALists() }
     function resetProjects() { S.set('projects', DEF); renderProj('all'); renderALists(); alert('✅ Reset done!') }
 
     // ── IMAGE HELPERS ──
