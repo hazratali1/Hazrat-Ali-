@@ -2489,9 +2489,20 @@
             placeholder="your-preset"></div>
         <div class="fg"><label>New Admin Password</label><input type="password" id="npw"
             placeholder="Leave blank to keep current"></div>
+        <hr style="border-color:var(--border);margin:18px 0">
+        <h4 style="margin-bottom:12px;color:var(--g3)">🐙 GitHub Auto-Publish</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px">Admin panel এ add করলেই GitHub এ push হবে, Vercel auto-deploy করবে — সবাই দেখবে!</p>
+        <div class="fg"><label>GitHub Personal Access Token</label><input type="password" id="ght" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"></div>
+        <div class="fg"><label>GitHub Username</label><input type="text" id="ghu" placeholder="hazratali1"></div>
+        <div class="fg"><label>GitHub Repo Name</label><input type="text" id="ghr" placeholder="Hazrat-Ali-main"></div>
+        <div class="fg"><label>Branch</label><input type="text" id="ghb" placeholder="main"></div>
         <button class="submit-btn" onclick="saveSettings()">Save ✅</button>
+        <button class="submit-btn" onclick="publishToGitHub()"
+          style="margin-top:12px;background:linear-gradient(135deg,rgba(168,85,247,.3),rgba(78,205,196,.3));color:var(--text);border:1px solid rgba(168,85,247,.4)">🚀 Publish to Site (GitHub → Vercel)</button>
         <button class="submit-btn" onclick="exportAll()"
-          style="margin-top:12px;background:rgba(255,255,255,.07);color:var(--text)">📤 Export Data (JSON)</button>
+          style="margin-top:10px;background:rgba(255,255,255,.07);color:var(--text)">📤 Export Data (JSON)</button>
+        <button class="submit-btn" onclick="importAll()"
+          style="margin-top:10px;background:rgba(78,205,196,.12);color:var(--g3)">📥 Import Data (JSON)</button>
         <button class="submit-btn" onclick="if(confirm('Reset all projects to defaults?'))resetProjects()"
           style="margin-top:10px;background:rgba(255,107,53,.15);color:var(--g1)">🔄 Reset Projects to Default</button>
       </div>
@@ -2600,48 +2611,21 @@
       { id: 40, title: 'Website Customer Support Chatbot', client: 'Client Project', category: 'ai', desc: 'Deployable chatbot for business websites handling FAQs, product enquiries and support tickets 24/7 without human intervention.', tags: ['n8n', 'LLM', 'Chatbot', 'Automation'], github: 'https://github.com/hazratali1', demo: '', img: '', emoji: '💬' },
     ];
 
+    // ── SITE DATA: DEF BLOG ──
+    const DEF_BLOG = [
+      { id: 1, title: 'How I Built a WhatsApp Attendance System with n8n', category: 'n8n Tutorial', summary: 'A complete breakdown of how I built a multi-shift WhatsApp attendance tracking system using n8n and Green API.', content: 'In this post, I walk through the full architecture of the WhatsApp attendance system I built for Vibe Academy. The system handles 3 shifts, calculates working hours, and sends monthly reports automatically.', img: '', tags: ['n8n', 'WhatsApp', 'Automation', 'Green API'], date: '2025-12-01T00:00:00.000Z', draft: false },
+      { id: 2, title: 'Building an AI Cold Email Outreach System with Claude', category: 'AI Workflow', summary: 'How I automated personalized B2B cold email outreach using Claude Opus, n8n, and Google Sheets.', content: 'Cold email outreach is time-consuming. This system reads leads from Google Sheets, uses Claude Opus to write personalized emails, then saves them as Gmail drafts for review.', img: '', tags: ['n8n', 'Claude AI', 'Cold Email', 'Lead Generation'], date: '2025-12-05T00:00:00.000Z', draft: false },
+      { id: 3, title: 'AI Fashion Studio: Dress Try-On with Gemini + Veo 3', category: 'Case Study', summary: 'A deep dive into building an AI-powered dress try-on system using Gemini 2.5 Flash and Veo 3.1.', content: 'The client wanted customers to see how a dress looks on a model without a photoshoot. I built two n8n workflows: one for images using Gemini 2.5 Flash, and one for video using Veo 3.1.', img: '', tags: ['n8n', 'Gemini', 'Veo 3', 'AI Fashion'], date: '2025-12-10T00:00:00.000Z', draft: false }
+    ];
+    // ── SITE DATA: DEF ACH ──
+    const DEF_ACH = [];
+    // ── END SITE DATA ──
+
     // ── INIT ──
     window.onload = () => {
-      if (!S.get('projects').length) {
-        S.set('projects', DEF);
-      }
-      // Set default blog posts if empty
-      if (!S.get('blogPosts').length) {
-        S.set('blogPosts', [
-          {
-            id: 1, title: 'How I Built a WhatsApp Attendance System with n8n', category: 'n8n Tutorial', summary: 'A complete breakdown of how I built a multi-shift WhatsApp attendance tracking system using n8n and Green API — with IN/OUT parsing, grace periods, and monthly Gmail reports.', content: `In this post, I walk through the full architecture of the WhatsApp attendance system I built for Vibe Academy. The system handles 3 shifts, calculates working hours, and sends monthly reports automatically.
-
-The key challenge was parsing natural language IN/ OUT messages from WhatsApp and matching them to the correct employee and shift.I solved this using a Code node with regex matching.
-
-The workflow:
-        1. Green API webhook receives WhatsApp message
-        2. Code node parses employee phone + message type
-        3. Google Sheets lookup for shift schedule
-4. Attendance logged with timestamp
-5. Monthly Gmail report auto - generated`, img: '', tags: ['n8n', 'WhatsApp', 'Automation', 'Green API'], date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), draft: false
-          },
-          {
-            id: 2, title: 'Building an AI Cold Email Outreach System with Claude', category: 'AI Workflow', summary: 'How I automated personalized B2B cold email outreach using Claude Opus, n8n, and Google Sheets — generating custom emails for each lead and saving them as Gmail drafts.', content: `Cold email outreach is time-consuming. In this post, I show how I built a fully automated outreach system for a Netherlands-based coaching company.
-
-The system reads leads from Google Sheets, uses Claude Opus to write personalized emails based on the lead's role, company, and pain points, then saves them as Gmail drafts for review.
-
-Key features:
-          - B2B vs B2C tone detection
-            - English / Dutch language support
-              - Daily scheduled runs at 7: 30 AM
-                - Status tracking in Google Sheets`, img: '', tags: ['n8n', 'Claude AI', 'Cold Email', 'Lead Generation'], date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), draft: false
-          },
-          {
-            id: 3, title: 'AI Fashion Studio: Dress Try-On with Gemini + Veo 3', category: 'Case Study', summary: 'A deep dive into building an AI-powered dress try-on system — generating both images and videos of models wearing uploaded dresses using Gemini 2.5 Flash and Veo 3.1.', content: `This is one of my most exciting projects. The client wanted customers to see how a dress looks on a model without a photoshoot.
-
-I built two separate n8n workflows:
-            1. Image workflow: Upload dress → Gemini 2.5 Flash generates model photo → Gmail delivery
-            2. Video workflow: Upload model image → Veo 3.1 generates 8 - second fashion video → Gmail delivery
-
-The biggest challenge was handling Veo's async API — it returns an operation ID that needs to be polled for completion. I used a Wait node + HTTP status check to handle this.`, img: '', tags: ['n8n', 'Gemini', 'Veo 3', 'AI Fashion'], date: new Date().toISOString(), draft: false
-          }
-        ]);
-      }
+      if (!S.get('projects').length) { S.set('projects', DEF); }
+      if (!S.get('blogPosts').length) { S.set('blogPosts', DEF_BLOG); }
+      if (!S.get('achievements').length) { S.set('achievements', DEF_ACH); }
       renderProj('all');
       renderBlog();
       renderAch();
@@ -3017,7 +3001,6 @@ The biggest challenge was handling Veo's async API — it returns an operation I
     // ── IMAGE HELPERS ──
     async function prevImg(inp, prevId, urlId) {
       const f = inp.files[0]; if (!f) return;
-
       const el = document.getElementById(prevId);
       const urlInput = document.getElementById(urlId);
       const cfg = S.obj('cfg', {});
@@ -3026,27 +3009,30 @@ The biggest challenge was handling Veo's async API — it returns an operation I
       el.src = URL.createObjectURL(f);
       el.style.display = 'block';
 
-      if (cfg.cloudName && cfg.cloudPreset) {
-        urlInput.value = 'Uploading to Cloudinary...';
+      if (cfg.ghToken && cfg.ghUser && cfg.ghRepo) {
+        // GitHub upload → assets/ folder → sababai dekhbe
+        urlInput.value = '⏳ Uploading to GitHub assets/...';
+        try {
+          const path = await uploadToGitHub(f, cfg.ghToken, cfg.ghUser, cfg.ghRepo, cfg.ghBranch || 'main');
+          urlInput.value = path;
+          alert('✅ Image uploaded to GitHub assets/! "Publish to Site" click করুন।');
+        } catch (err) {
+          alert('❌ GitHub upload failed. Token ও Repo check করুন।');
+          urlInput.value = '';
+        }
+      } else if (cfg.cloudName && cfg.cloudPreset) {
+        urlInput.value = '⏳ Uploading to Cloudinary...';
         try {
           const fd = new FormData();
           fd.append('file', f);
           fd.append('upload_preset', cfg.cloudPreset);
           const res = await fetch(`https://api.cloudinary.com/v1_1/${cfg.cloudName}/image/upload`, { method: 'POST', body: fd });
           const data = await res.json();
-          if (data.secure_url) {
-            urlInput.value = data.secure_url;
-            el.src = data.secure_url;
-          } else {
-            alert('❌ Cloudinary error: ' + (data.error?.message || 'Unknown error'));
-            urlInput.value = '';
-          }
-        } catch (err) {
-          alert('❌ Cloudinary upload failed. Check your network.');
-          urlInput.value = '';
-        }
+          if (data.secure_url) { urlInput.value = data.secure_url; el.src = data.secure_url; }
+          else { alert('❌ Cloudinary error: ' + (data.error?.message || 'Unknown error')); urlInput.value = ''; }
+        } catch (err) { alert('❌ Cloudinary upload failed.'); urlInput.value = ''; }
       } else {
-        // Fallback to Base64 local storage if Cloudinary is not configured
+        // Fallback: Base64 (only visible in your browser)
         const r = new FileReader();
         r.onload = e => { urlInput.value = e.target.result };
         r.readAsDataURL(f);
@@ -3060,17 +3046,127 @@ The biggest challenge was handling Veo's async API — it returns an operation I
     // ── SETTINGS ──
     function saveSettings() {
       const cfg = S.obj('cfg', { pw: 'admin123' });
-      S.set('cfg', { cloudName: document.getElementById('cln').value, cloudPreset: document.getElementById('clp').value, pw: document.getElementById('npw').value || cfg.pw });
+      S.set('cfg', {
+        cloudName: document.getElementById('cln').value,
+        cloudPreset: document.getElementById('clp').value,
+        pw: document.getElementById('npw').value || cfg.pw,
+        ghToken: document.getElementById('ght').value,
+        ghUser: document.getElementById('ghu').value,
+        ghRepo: document.getElementById('ghr').value,
+        ghBranch: document.getElementById('ghb').value || 'main'
+      });
       alert('✅ Saved!');
     }
     function loadSettings() {
       const cfg = S.obj('cfg', {});
       if (cfg.cloudName) document.getElementById('cln').value = cfg.cloudName;
       if (cfg.cloudPreset) document.getElementById('clp').value = cfg.cloudPreset;
+      if (cfg.ghToken) document.getElementById('ght').value = cfg.ghToken;
+      if (cfg.ghUser) document.getElementById('ghu').value = cfg.ghUser;
+      if (cfg.ghRepo) document.getElementById('ghr').value = cfg.ghRepo;
+      if (cfg.ghBranch) document.getElementById('ghb').value = cfg.ghBranch;
     }
     function exportAll() {
-      const b = new Blob([JSON.stringify({ projects: S.get('projects'), blogPosts: S.get('blogPosts'), cfg: S.obj('cfg') }, null, 2)], { type: 'application/json' });
+      const b = new Blob([JSON.stringify({ projects: S.get('projects'), blogPosts: S.get('blogPosts'), achievements: S.get('achievements'), cfg: S.obj('cfg') }, null, 2)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'hazrat-portfolio-data.json'; a.click();
+    }
+    function importAll() {
+      const inp = document.createElement('input');
+      inp.type = 'file'; inp.accept = '.json';
+      inp.onchange = e => {
+        const f = e.target.files[0]; if (!f) return;
+        const r = new FileReader();
+        r.onload = ev => {
+          try {
+            const d = JSON.parse(ev.target.result);
+            if (d.projects) S.set('projects', d.projects);
+            if (d.blogPosts) S.set('blogPosts', d.blogPosts);
+            if (d.achievements) S.set('achievements', d.achievements);
+            if (d.cfg) S.set('cfg', d.cfg);
+            renderProj('all'); renderBlog(); renderAch(); renderALists();
+            alert('✅ Data imported successfully!');
+          } catch { alert('❌ Invalid JSON file!'); }
+        };
+        r.readAsText(f);
+      };
+      inp.click();
+    }
+
+    // ── GITHUB PUBLISH ──
+    async function uploadToGitHub(file, token, owner, repo, branch) {
+      const filename = Date.now() + '_' + file.name.replace(/[^a-z0-9._-]/gi, '_');
+      const path = 'assets/' + filename;
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = async e => {
+          const base64 = e.target.result.split(',')[1];
+          try {
+            const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+              method: 'PUT',
+              headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message: `Add image: ${filename}`, content: base64, branch })
+            });
+            if (res.ok) resolve(path);
+            else reject('Upload failed');
+          } catch { reject('Upload failed'); }
+        };
+        r.readAsDataURL(file);
+      });
+    }
+
+    async function publishToGitHub() {
+      const cfg = S.obj('cfg', {});
+      if (!cfg.ghToken || !cfg.ghUser || !cfg.ghRepo) {
+        alert('❌ প্রথমে Settings এ GitHub Token, Username, Repo দিন এবং Save করুন!'); return;
+      }
+      const btn = event.target;
+      btn.textContent = '⏳ Publishing...';
+      btn.disabled = true;
+      try {
+        const apiBase = `https://api.github.com/repos/${cfg.ghUser}/${cfg.ghRepo}`;
+        const branch = cfg.ghBranch || 'main';
+        const headers = { Authorization: `token ${cfg.ghToken}`, 'Content-Type': 'application/json' };
+        // Get current index.html
+        const getRes = await fetch(`${apiBase}/contents/index.html?ref=${branch}`, { headers });
+        if (!getRes.ok) throw new Error('index.html পড়তে পারছি না। Token ও Repo নাম চেক করুন।');
+        const fileData = await getRes.json();
+        const sha = fileData.sha;
+        let html = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
+        // Replace DEF_BLOG
+        const blogs = S.get('blogPosts');
+        html = html.replace(
+          /\/\/ ── SITE DATA: DEF BLOG ──[\s\S]*?\/\/ ── SITE DATA: DEF ACH ──/,
+          `// ── SITE DATA: DEF BLOG ──\n    const DEF_BLOG = ${JSON.stringify(blogs)};\n    // ── SITE DATA: DEF ACH ──`
+        );
+        // Replace DEF_ACH
+        const achs = S.get('achievements');
+        html = html.replace(
+          /\/\/ ── SITE DATA: DEF ACH ──[\s\S]*?\/\/ ── END SITE DATA ──/,
+          `// ── SITE DATA: DEF ACH ──\n    const DEF_ACH = ${JSON.stringify(achs)};\n    // ── END SITE DATA ──`
+        );
+        // Replace DEF (projects)
+        const projs = S.get('projects');
+        html = html.replace(
+          /const DEF = \[[\s\S]*?\];\s*\/\/ ── SITE DATA: DEF BLOG ──/,
+          `const DEF = ${JSON.stringify(projs)};\n    // ── SITE DATA: DEF BLOG ──`
+        );
+        // Push to GitHub
+        const encoded = btoa(unescape(encodeURIComponent(html)));
+        const putRes = await fetch(`${apiBase}/contents/index.html`, {
+          method: 'PUT', headers,
+          body: JSON.stringify({ message: '🚀 Update portfolio data via admin panel', content: encoded, sha, branch })
+        });
+        if (putRes.ok) {
+          alert('✅ Published! Vercel ~30 সেকেন্ডে deploy করবে। তারপর সবাই দেখতে পাবে!');
+        } else {
+          const err = await putRes.json();
+          throw new Error(err.message || 'Unknown error');
+        }
+      } catch (e) {
+        alert('❌ Error: ' + e.message);
+      }
+      btn.textContent = '🚀 Publish to Site (GitHub → Vercel)';
+      btn.disabled = false;
     }
 
     // ── PARTICLES ──
